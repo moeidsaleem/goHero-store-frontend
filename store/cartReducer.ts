@@ -8,6 +8,7 @@ type CounterState = {
     description?: string;
     category?: string;
     imageUrl?: string;
+    quantity: number;
   }>;
 };
 
@@ -21,7 +22,32 @@ export const counter = createSlice({
   reducers: {
     reset: () => initialState,
     addProduct: (state, action: PayloadAction<any>) => {
-      state.products.push(action.payload)
+      // add with quantity
+      const product = state.products.find(product => product.id === action.payload.id)
+      if (product) {
+        product.quantity += 1
+      } else {
+        state.products.push({ ...action.payload, quantity: 1 })
+      }
+    },
+    removeProduct: (state, action: PayloadAction<any>) => {
+      state.products = state.products.filter(product => product.id !== action.payload.id)
+    },
+    addQuantity: (state, action: PayloadAction<any>) => {
+      state.products = state.products.map(product => {
+        if (product.id === action.payload.id) {
+          product.quantity += 1
+        }
+        return product
+      })
+    },
+    removeQuantity: (state, action: PayloadAction<any>) => {
+      state.products = state.products.map(product => {
+        if (product.id === action.payload.id) {
+          product.quantity -= 1
+        }
+        return product
+      })
     },
     // decrement: (state) => {
     //   state.value -= 1;
@@ -41,6 +67,9 @@ export const {
   // decrement,
   // decrementByAmount,
   addProduct,
+  removeProduct,
+  addQuantity,
+  removeQuantity,
   reset,
 } = counter.actions;
 export default counter.reducer;

@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { useAppDispatch, useAppSelector } from '@/store/hook'
 import { reset, addProduct } from "@/store/cartReducer";
+import Link from "next/link";
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,35 +19,16 @@ export const Header = () => {
           <div className="relative flex grid items-center grid-cols-2 lg:grid-cols-3">
             <ul className="flex items-center hidden space-x-8 lg:flex">
               <li>
-                <a
+                <Link
                   href="/"
                   aria-label="Our product"
                   title="Our product"
                   className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                 >
-                  Product
-                </a>
+                  Products
+                </Link>
               </li>
-              <li>
-                <a
-                  href="/"
-                  aria-label="Our product"
-                  title="Our product"
-                  className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-                >
-                  Features
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/"
-                  aria-label="Product pricing"
-                  title="Product pricing"
-                  className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-                >
-                  Pricing
-                </a>
-              </li>
+           
             </ul>
             <a
               href="/"
@@ -55,7 +37,7 @@ export const Header = () => {
               className="inline-flex items-center lg:mx-auto"
             >
               <svg
-                className="w-8 text-teal-accent-400"
+                className="w-8 text-gray-100"
                 viewBox="0 0 24 24"
                 strokeLinejoin="round"
                 strokeWidth="2"
@@ -70,7 +52,7 @@ export const Header = () => {
                 <rect x="14" y="11" width="7" height="12" />
               </svg>
               <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-                Company
+               HeroGO
               </span>
             </a>
             <ul className="flex items-center hidden ml-auto space-x-8 lg:flex">
@@ -95,14 +77,15 @@ export const Header = () => {
                 </a>
               </li>
               <li>
-                <a
+                <Link
                   href="/cart"
                   className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                   aria-label="Sign up"
                   title="Sign up"
                 >
-                 Cart {products.length}
-                </a>
+                 Cart <span className="ml-2 text-lg rounded-full px-2 bg-white font-bold tracking-wide text-gray-900 uppercase">{products.length > 0 && products.length}</span>
+
+                </Link>
               </li>
             </ul>
             <div className="ml-auto lg:hidden">
@@ -186,26 +169,7 @@ export const Header = () => {
                             Product
                           </a>
                         </li>
-                        <li>
-                          <a
-                            href="/"
-                            aria-label="Our product"
-                            title="Our product"
-                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                          >
-                            Features
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/"
-                            aria-label="Product pricing"
-                            title="Product pricing"
-                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                          >
-                            Pricing
-                          </a>
-                        </li>
+                        
                         <li>
                           <a
                             href="/"
