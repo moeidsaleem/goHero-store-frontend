@@ -5,7 +5,7 @@ import ProductCard from "@/components/core/product/ProductCard/ProductCard";
 
 export default function ProductDetailpage(){
     return (<div>
-        <div className="flex flex-col w-full mb-6 lg:justify-center lg:flex-row md:mb-8">
+        <div className="flex flex-col w-full mb-6 lg:justify-center lg:flex-row md:mb-8 sm:mt-40 border px-6 py-20">
 
     <ProductCard id={1} title="Organic Apples" price={3.99} description="Fresh, locally grown organic apples."   imageUrl="/images/basket.png" showCartButton={false} />
     <div className="p-4 my-auto">

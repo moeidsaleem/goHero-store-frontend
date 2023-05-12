@@ -4,6 +4,8 @@ import ProductCard from "../ProductCard/ProductCard";
 
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { reset, addProduct } from "@/store/cartReducer";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const productsList = {
   "1": {
@@ -52,9 +54,10 @@ const productsList = {
 };
 
 export const ProductGrid = () => {
-  const products = useAppSelector((state) => state.counterReducer.products);
+  const products = useAppSelector((state) => state.cartReducer.products);
   const dispatch = useAppDispatch();
 
+  const router = useRouter();
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="flex flex-col w-full mb-6 lg:justify-between lg:flex-row md:mb-8">
@@ -98,12 +101,16 @@ export const ProductGrid = () => {
               btnClick={() => {
                 dispatch(addProduct(product));
               }}
+              onItemClick={() => {
+                router.push(`/products/${product.id}`);
+              }}
+
             />
           );
         })}
       </div>
       <div className="text-center">
-        <a
+        <Link
           href="/"
           aria-label=""
           className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
@@ -116,7 +123,7 @@ export const ProductGrid = () => {
           >
             <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z" />
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   );

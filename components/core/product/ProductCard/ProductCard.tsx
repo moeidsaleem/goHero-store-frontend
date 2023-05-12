@@ -8,6 +8,7 @@ interface ProductCardProps {
   showCartButton?: boolean;
   btnClick?: any;
   btnText?: string;
+  onItemClick?: any;
 }
 
 export default function ProductCard({
@@ -18,19 +19,21 @@ export default function ProductCard({
   id,
   slug,
   showCartButton = true,
+  onItemClick = null,
   btnClick,
   btnText = "Add to Cart",
   ...props
 }: ProductCardProps) {
   return (
-    <div>
+    <div >
       <img
-        className="object-cover w-full h-56 mb-6 rounded shadow-lg md:h-64 xl:h-80"
+      onClick={onItemClick}
+        className="object-cover w-full h-56 mb-6 rounded shadow-lg md:h-64 xl:h-80 cursor-pointer"
         src={imageUrl}
         alt=""
       />
-      <p className="mb-1 text-xl font-bold leading-none sm:text-2xl">{title}</p>
-      <p className="font-bold text-2xl mb-2 bg-">
+      <p className="mb-1 text-xl font-bold leading-none sm:text-2xl cursor-pointer" onClick={onItemClick}>{title}</p>
+      <p className="font-bold text-2xl mb-2 bg-" >
         <span className="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent">
           {price &&
             price.toLocaleString("en-US", {

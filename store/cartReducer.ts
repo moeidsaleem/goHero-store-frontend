@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type CounterState = {
+type CartState = {
   products: Array<{
     id: number;
     title: string;
@@ -14,9 +14,9 @@ type CounterState = {
 
 const initialState = {
   products: []
-} as CounterState;
+} as CartState;
 
-export const counter = createSlice({
+export const cart = createSlice({
   name: "cart",
   initialState,
   reducers: {
@@ -44,20 +44,11 @@ export const counter = createSlice({
     removeQuantity: (state, action: PayloadAction<any>) => {
       state.products = state.products.map(product => {
         if (product.id === action.payload.id) {
-          product.quantity -= 1
+          product.quantity > 1 ? product.quantity--  : product.quantity = 1
         }
         return product
       })
     },
-    // decrement: (state) => {
-    //   state.value -= 1;
-    // },
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload;
-    // },
-    // decrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value -= action.payload;
-    // },
   },
 });
 
@@ -71,5 +62,5 @@ export const {
   addQuantity,
   removeQuantity,
   reset,
-} = counter.actions;
-export default counter.reducer;
+} = cart.actions;
+export default cart.reducer;

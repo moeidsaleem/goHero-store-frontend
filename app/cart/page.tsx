@@ -1,10 +1,11 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { reset, addQuantity, removeQuantity } from "@/store/cartReducer";
+import { reset,removeProduct, addQuantity, removeQuantity } from "@/store/cartReducer";
+import Link from "next/link";
 
 export default function CartPage() {
-  const products = useAppSelector((state) => state.counterReducer.products);
+  const products = useAppSelector((state) => state.cartReducer.products);
   const dispatch = useAppDispatch();
 
   return (
@@ -115,7 +116,7 @@ export default function CartPage() {
                                     $ {Number(product.price * product.quantity ).toFixed(2)}
                                 </td>
                                 <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                  <button className="text-gray-500 focus:outline-none focus:text-gray-600">
+                                  <button className="text-gray-500 focus:outline-none focus:text-gray-600" onClick={()=> dispatch(removeProduct(product))}>
                                     <svg
                                       className="w-5 h-5"
                                       fill="none"
@@ -160,9 +161,9 @@ export default function CartPage() {
                     </svg>
                   </div>
                   <div className="ml-4 text-sm font-medium text-gray-500">
-                    <a href="#" className="text-gray-900">
+                    <Link href="/" className="text-gray-900">
                       Continue Shopping<span aria-hidden="true"> &rarr;</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="flex ">

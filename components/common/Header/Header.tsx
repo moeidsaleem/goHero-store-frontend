@@ -10,7 +10,7 @@ import Link from "next/link";
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     
-    const products = useAppSelector((state) => state.counterReducer.products);
+    const products = useAppSelector((state) => state.cartReducer.products);
   const dispatch = useAppDispatch();
 
     return (
