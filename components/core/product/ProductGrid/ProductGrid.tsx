@@ -1,14 +1,25 @@
+'use client'
+
 import ProductCard from "../ProductCard/ProductCard"
 
+import { useAppDispatch, useAppSelector } from '@/store/hook'
+import { reset, addProduct } from "@/store/cartReducer";
 
-const products = {
+
+const productsList = {
   "1": {
     id: 1,
     title: "Organic Apples",
     price: 2.99,
     description: "Fresh, locally grown organic apples.",
     category: "Produce",
-    imageUrl: "/images/basket.png"
+    imageUrl: "/images/basket.png",
+    specifications: {
+      weight: "1kg",
+      dimensions: "10 x 10 x 10 cm",
+      color: "Red",
+      material: "Plastic",
+    }
   },
   "2": {
     id: 2,
@@ -16,7 +27,13 @@ const products = {
     price: 4.99,
     description: "High-quality free-range eggs from happy chickens.",
     category: "Dairy & Eggs",
-    imageUrl: "/images/box.png"
+    imageUrl: "/images/box.png",
+    specifications: {
+      weight: "1kg",
+      dimensions: "10 x 10 x 10 cm",
+      color: "Red",
+      material: "Plastic",
+    }
   },
   "3": {
     id: 3,
@@ -24,12 +41,21 @@ const products = {
     price: 3.49,
     description: "Nutritious whole grain bread, freshly baked daily.",
     category: "Bakery",
-    imageUrl: "/images/basket.png"
+    imageUrl: "/images/basket.png",
+    specifications: {
+      weight: "1kg",
+      dimensions: "10 x 10 x 10 cm",
+      color: "Red",
+      material: "Plastic",
+    }
   },
   // Add more product entries as needed
 };
 
 export const ProductGrid = () => {
+  const products = useAppSelector((state) => state.counterReducer.products);
+  const dispatch = useAppDispatch();
+
     return (
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="flex flex-col w-full mb-6 lg:justify-between lg:flex-row md:mb-8">
@@ -64,8 +90,11 @@ export const ProductGrid = () => {
         </div>
         <div className="grid gap-8 row-gap-5 mb-8 lg:grid-cols-3 lg:row-gap-8">
           {
-            Object.values(products).map((product) => {
-              return (<ProductCard key={product.id} {...product} />)
+            Object.values(productsList).map((product) => {
+              return (<ProductCard key={product.id} {...product} btnClick={()=>{
+                dispatch(addProduct(product))
+                
+              }} />)
           }
           )}
         </div>

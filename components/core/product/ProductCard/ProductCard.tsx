@@ -5,6 +5,9 @@ interface ProductCardProps {
   imageUrl: string;
   id: any;
   slug?: string;
+  showCartButton?: boolean;
+  btnClick?: any;
+  btnText?: string;
 }
 
 export default function ProductCard({
@@ -14,6 +17,9 @@ export default function ProductCard({
   imageUrl,
   id,
   slug,
+  showCartButton = true,
+  btnClick,
+  btnText = "Add to Cart",
   ...props
 }: ProductCardProps) {
   return (
@@ -39,9 +45,12 @@ export default function ProductCard({
       <p className="text-gray-700">
         {description}
       </p>
-      <button className="px-4 py-2 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gradient-to-tl from-blue-600 to-violet-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-        Add to cart
-      </button>
+      {showCartButton && ( <button
+      onClick={btnClick}
+      className="px-4 py-2 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gradient-to-tl from-blue-600 to-violet-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+       {btnText}
+      </button>)}
+     
     </div>
   );
 }
