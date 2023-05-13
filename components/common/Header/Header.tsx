@@ -28,7 +28,6 @@ export const Header = () => {
                   Products
                 </Link>
               </li>
-           
             </ul>
             <a
               href="/"
@@ -52,7 +51,7 @@ export const Header = () => {
                 <rect x="14" y="11" width="7" height="12" />
               </svg>
               <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-               HeroGO
+                HeroGO
               </span>
             </a>
             <ul className="flex items-center hidden ml-auto space-x-8 lg:flex">
@@ -66,7 +65,7 @@ export const Header = () => {
                   Sign in
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="/"
                   className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
@@ -75,16 +74,18 @@ export const Header = () => {
                 >
                   Sign up
                 </a>
-              </li>
+              </li> */}
               <li>
                 <Link
                   href="/cart"
-                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                  className="inline-flex bg-white p-2 rounded-full items-center justify-center h-12font-medium tracking-wide text-white transition duration-200  shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                   aria-label="Sign up"
                   title="Sign up"
                 >
-                 Cart <span className="ml-2 text-lg rounded-full px-2 bg-white font-bold tracking-wide text-gray-900 uppercase">{products.length > 0 && products.length}</span>
-
+                  <img src="/images/cart.png" alt="cart" className="w-6 h-6 " />
+                  <span className="ml-2 text-lg rounded-full px-2 bg-white font-bold tracking-wide text-gray-900 uppercase">
+                    {products.length > 0 && products.length}
+                  </span>
                 </Link>
               </li>
             </ul>
@@ -148,7 +149,10 @@ export const Header = () => {
                           className="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                           onClick={() => setIsMenuOpen(false)}
                         >
-                          <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+                          <svg
+                            className="w-5 text-gray-600"
+                            viewBox="0 0 24 24"
+                          >
                             <path
                               fill="currentColor"
                               d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
@@ -169,7 +173,7 @@ export const Header = () => {
                             Product
                           </a>
                         </li>
-                        
+
                         <li>
                           <a
                             href="/"
